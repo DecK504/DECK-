@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="DECK — Comunidad de Car Parking Multiplayer">
+  <title>DECK Ⓥ — Comunidad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" data-page="home"><span class="brand-mark">D</span><span>DECK<span class="brand-v">Ⓥ</span></span></a>
+      <div class="sidebar-label">MENÚ PRINCIPAL</div>
+      <nav id="sideNav" class="side-nav">
+        <button class="nav-item active" data-page="home"><span>⌂</span> Inicio</button>
+        <button class="nav-item" data-page="community"><span>▦</span> Comunidad</button>
+        <button class="nav-item" data-page="garage"><span>🚘</span> DECK Garage</button>
+        <button class="nav-item" data-page="chat"><span>▤</span> Chat grupal</button>
+        <button class="nav-item" data-page="messages"><span>✉</span> Mensajes</button>
+        <button class="nav-item" data-page="missions"><span>◎</span> Misiones</button>
+        <button class="nav-item" data-page="achievements"><span>🏆</span> Logros</button>
+        <button class="nav-item" data-page="market"><span>◇</span> Market</button>
+        <button class="nav-item" data-page="events"><span>▣</span> Eventos</button>
+        <button class="nav-item" data-page="points"><span>◈</span> Puntos y canjes</button>
+        <button class="nav-item" data-page="search"><span>⌕</span> Buscar</button>
+        <button class="nav-item" data-page="safety"><span>盾</span> Seguridad</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-item" data-page="profile"><span>◉</span> Mi perfil</button>
+        <button class="nav-item" data-page="settings"><span>⚙</span> Configuración</button>
+        <div class="connection" id="connectionState"><i></i> Modo de configuración</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-brand" data-page="home">DECK <b>Ⓥ</b></button>
+        <div class="search-mini" role="button" tabindex="0" data-page="search">⌕ <span>Buscar en DECK...</span><kbd>⌘ K</kbd></div>
+        <div class="top-actions">
+          <button class="icon-button" title="Notificaciones" data-page="notifications">♧<span class="notification-dot"></span></button>
+          <button class="avatar small-avatar" data-page="profile">D</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-row">
+          <div><p class="eyebrow">TU COMUNIDAD, TU GARAJE</p><h1>Bienvenido a <span>DECK Ⓥ</span></h1><p class="muted">Conecta con la comunidad de Car Parking Multiplayer.</p></div>
+          <button class="primary-button" data-action="new-post">＋ Crear publicación</button>
+        </div>
+        <div class="hero-banner">
+          <div class="hero-content"><span class="pill">COMUNIDAD CPM</span><h2>Comparte. Compite.<br><em>Construye tu DECK.</em></h2><p>Publica tus vehículos, participa en eventos y desbloquea logros.</p><button class="light-button" data-page="community">Explorar comunidad <b>→</b></button></div>
+          <div class="hero-orbit">D<span>Ⓥ</span></div>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">DESCUBRE</p><h2>Explora DECK</h2></div></div>
+        <div class="feature-grid">
+          <button class="feature-card" data-page="points"><span class="feature-icon blue">◈</span><b>Canjear puntos</b><small>Consulta tus recompensas</small></button>
+          <button class="feature-card" data-page="chat"><span class="feature-icon purple">▤</span><b>Chat grupal</b><small>Habla con la comunidad</small></button>
+          <button class="feature-card" data-page="market"><span class="feature-icon orange">◇</span><b>DECK Market</b><small>Explora artículos disponibles</small></button>
+          <button class="feature-card" data-page="events"><span class="feature-icon green">▣</span><b>Eventos</b><small>Participa en actividades</small></button>
+        </div>
+        <div class="content-columns">
+          <div><div class="section-heading"><div><p class="eyebrow">COMUNIDAD</p><h2>Publicaciones recientes</h2></div><button class="text-button" data-page="community">Ver todo →</button></div><div id="homePosts" class="post-list"></div></div>
+          <aside class="right-column">
+            <div class="panel"><div class="panel-title"><h3>Tu progreso</h3><span class="level-tag">Nivel 1</span></div><div class="progress-number"><b>0 XP</b><span>0 / 500 XP</span></div><div class="progress-track"><i style="width:0%"></i></div><p class="muted tiny">Completa misiones para subir de nivel.</p><button class="outline-button full" data-page="missions">Ver misiones</button></div>
+            <div class="panel"><h3>DECK News</h3><div class="news-empty"><span>◈</span><p>Próximamente habrá anuncios oficiales.</p></div></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page" id="page-community"><div class="page-title"><div><p class="eyebrow">EL FEED DE DECK</p><h1>Comunidad</h1><p class="muted">Descubre publicaciones y comparte tus momentos.</p></div><button class="primary-button" data-action="new-post">＋ Publicar</button></div><div class="tabs"><button class="tab active" data-feed="for-you">Para ti</button><button class="tab" data-feed="following">Siguiendo</button><button class="tab" data-feed="recent">Recientes</button></div><div id="communityPosts" class="post-list"></div></section>
+
+      <section class="page" id="page-garage"><div class="page-title"><div><p class="eyebrow">TU ESTILO SOBRE RUEDAS</p><h1>DECK Garage</h1><p class="muted">Muestra tus vehículos y sus modificaciones.</p></div><button class="primary-button" data-action="new-vehicle">＋ Publicar vehículo</button></div><div class="empty-state"><div>🚘</div><h3>Tu garaje empieza aquí</h3><p>Cuando conectes tu cuenta podrás publicar fotos, detalles y modificaciones de tus vehículos.</p></div></section>
+
+      <section class="page" id="page-chat"><div class="page-title"><div><p class="eyebrow">COMUNIDAD EN TIEMPO REAL</p><h1>Chat grupal</h1><p class="muted">Conversación comunitaria moderada.</p></div></div><div class="chat-placeholder"><div class="chat-lock">▤</div><h3>Chat grupal DECK</h3><p>El chat se activará al configurar Supabase Auth, Realtime y las políticas de acceso.</p><span class="pill">Pendiente de conexión</span></div></section>
+
+      <section class="page" id="page-messages"><div class="page-title"><div><p class="eyebrow">CONVERSACIONES</p><h1>Mensajes</h1><p class="muted">Mensajes privados y solicitudes.</p></div></div><div class="empty-state"><div>✉</div><h3>Tus conversaciones aparecerán aquí</h3><p>Los mensajes serán privados y permitirán bloquear, denunciar y enviar notas de voz de hasta 1 minuto.</p></div></section>
+
+      <section class="page" id="page-missions"><div class="page-title"><div><p class="eyebrow">GANA EXPERIENCIA</p><h1>DECK Missions</h1><p class="muted">Misiones diarias, semanales y especiales. Reinicio a medianoche de Honduras.</p></div></div><div class="mission-grid"><article class="panel mission-card"><span class="pill">DIARIA</span><h3>Comparte tu primer post</h3><p class="muted">Publica una foto o actualización en la comunidad.</p><div class="mission-bottom"><b>0 / 1</b><strong>+10 XP</strong></div><div class="progress-track"><i style="width:0%"></i></div></article><article class="panel mission-card"><span class="pill purple-pill">SEMANAL</span><h3>Participa en la comunidad</h3><p class="muted">Realiza 5 comentarios válidos.</p><div class="mission-bottom"><b>0 / 5</b><strong>+20 XP</strong></div><div class="progress-track"><i style="width:0%"></i></div></article><article class="panel mission-card"><span class="pill orange-pill">ESPECIAL</span><h3>Explora DECK Garage</h3><p class="muted">Participa en una actividad especial.</p><div class="mission-bottom"><b>0 / 1</b><strong>+10 XP</strong></div><div class="progress-track"><i style="width:0%"></i></div></article></div><p class="notice">Vista de ejemplo: el progreso y las recompensas reales se validarán en el servidor.</p></section>
+
+      <section class="page" id="page-achievements"><div class="page-title"><div><p class="eyebrow">RECONOCE TU PROGRESO</p><h1>DECK Achievements</h1><p class="muted">Insignias que consigues al cumplir objetivos.</p></div></div><div class="achievement-grid"><div class="achievement"><span>🚀</span><b>Primer paso</b><small>Crea tu primera publicación</small><em>Bloqueado</em></div><div class="achievement"><span>🚘</span><b>Fan del Garage</b><small>Publica tu primer vehículo</small><em>Bloqueado</em></div><div class="achievement"><span>💬</span><b>Conversador</b><small>Participa en conversaciones</small><em>Bloqueado</em></div><div class="achievement"><span>⭐</span><b>Reconocido</b><small>Recibe 100 likes</small><em>Bloqueado</em></div></div></section>
+
+      <section class="page" id="page-market"><div class="page-title"><div><p class="eyebrow">RECOMPENSAS DE LA COMUNIDAD</p><h1>DECK Market</h1><p class="muted">Explora recompensas o sugiere un artículo.</p></div><button class="primary-button" data-action="market-suggestion">＋ Sugerir artículo</button></div><div class="empty-state"><div>◇</div><h3>Próximamente, el catálogo</h3><p>Las sugerencias serán revisadas por administración. Solo los artículos aprobados y configurados aparecerán para canje.</p></div></section>
+
+      <section class="page" id="page-events"><div class="page-title"><div><p class="eyebrow">ACTIVIDADES DE LA COMUNIDAD</p><h1>DECK Events</h1><p class="muted">Eventos, concursos y actividades especiales.</p></div></div><div class="empty-state"><div>▣</div><h3>No hay eventos publicados</h3><p>Cuando se anuncie un evento aparecerán aquí sus fechas, reglas y condiciones.</p></div></section>
+
+      <section class="page" id="page-points"><div class="page-title"><div><p class="eyebrow">RECOMPENSAS</p><h1>Puntos y canjes</h1><p class="muted">Tus puntos son independientes de tu XP.</p></div></div><div class="stats-row"><div class="panel stat-card"><small>Saldo disponible</small><b>— pts</b><span>Se mostrará al conectar tu cuenta.</span></div><div class="panel stat-card"><small>Canjes realizados</small><b>—</b><span>Historial personal.</span></div></div><div class="panel"><h3>Historial de puntos</h3><p class="muted">Todavía no hay movimientos para mostrar.</p></div></section>
+
+      <section class="page" id="page-search"><div class="page-title"><div><p class="eyebrow">ENCUENTRA TU COMUNIDAD</p><h1>DECK Search</h1><p class="muted">El buscador respetará la visibilidad pública y los bloqueos.</p></div></div><div class="search-large"><span>⌕</span><input id="globalSearch" type="search" placeholder="Buscar usuarios, vehículos, publicaciones o hashtags..."><button class="primary-button" id="searchButton">Buscar</button></div><div id="searchResults" class="search-results muted">Escribe algo para comenzar tu búsqueda.</div></section>
+
+      <section class="page" id="page-safety"><div class="page-title"><div><p class="eyebrow">PROTECCIÓN DE LA COMUNIDAD</p><h1>DECK Safety</h1><p class="muted">Herramientas para mantener una comunidad respetuosa.</p></div></div><div class="feature-grid safety-grid"><div class="panel"><h3>Bloqueos</h3><p class="muted">Controla quién puede interactuar contigo.</p></div><div class="panel"><h3>Denuncias</h3><p class="muted">Reporta contenido o comportamientos que incumplan las reglas.</p></div><div class="panel"><h3>Privacidad</h3><p class="muted">Administra la visibilidad de tu perfil y actividad.</p></div><div class="panel"><h3>Ayuda</h3><p class="muted">Consulta las reglas y solicita asistencia.</p></div></div></section>
+
+      <section class="page" id="page-profile"><div class="page-title"><div><p class="eyebrow">TU ESPACIO</p><h1>Mi perfil</h1><p class="muted">Configura tu identidad en DECK.</p></div><button class="outline-button" data-page="settings">Editar perfil</button></div><div class="profile-card panel"><div class="profile-cover"></div><div class="profile-info"><div class="avatar profile-avatar">D</div><div><h2>Tu nombre</h2><p class="muted">@tu_usuario · Nivel 1</p><span class="pill">Nuevo miembro</span></div></div><div class="profile-stats"><div><b>0</b><small>Publicaciones</small></div><div><b>0</b><small>Seguidores</small></div><div><b>0</b><small>Siguiendo</small></div></div></div><div class="profile-tools"><button class="feature-card" data-page="achievements">🏆 Mis logros</button><button class="feature-card" data-action="story-archive">▣ Archivo de historias</button><button class="feature-card" data-page="stats">▥ Estadísticas personales</button></div></section>
+
+      <section class="page" id="page-stats"><div class="page-title"><div><p class="eyebrow">TU ACTIVIDAD</p><h1>Estadísticas personales</h1><p class="muted">Solo tú podrás consultar tus estadísticas privadas.</p></div></div><div class="stats-row"><div class="panel stat-card"><small>Publicaciones</small><b>—</b></div><div class="panel stat-card"><small>Likes recibidos</small><b>—</b></div><div class="panel stat-card"><small>XP acumulado</small><b>—</b></div><div class="panel stat-card"><small>Logros</small><b>—</b></div></div></section>
+
+      <section class="page" id="page-notifications"><div class="page-title"><div><p class="eyebrow">MANTENTE AL DÍA</p><h1>Notificaciones</h1></div></div><div class="empty-state"><div>♧</div><h3>No tienes notificaciones</h3><p>Las novedades de tu cuenta aparecerán aquí.</p></div></section>
+      <section class="page" id="page-settings"><div class="page-title"><div><p class="eyebrow">PERSONALIZA TU CUENTA</p><h1>Configuración</h1></div></div><div class="panel settings-panel"><h3>Cuenta y privacidad</h3><p class="muted">Las opciones de cuenta estarán disponibles después de conectar Supabase.</p><div class="setting-row"><span>Perfil público</span><span class="pill">Configuración pendiente</span></div><div class="setting-row"><span>Solicitudes de mensajes</span><span class="pill">Controladas</span></div><div class="setting-row"><span>Archivo de historias</span><span class="pill">Manual</span></div><div class="setting-row"><span>Zona horaria</span><span class="pill">Honduras</span></div></div></section>
+
+      <footer class="footer"><span>DECK Ⓥ</span><span>Una comunidad para compartir tu pasión por CPM.</span><span>© 2026 DECK</span></footer>
+    </main>
+  </div>
+
+  <nav class="mobile-nav">
+    <button class="active" data-page="home"><span>⌂</span><small>Inicio</small></button>
+    <button data-page="community"><span>▦</span><small>Feed</small></button>
+    <button data-page="search"><span>⌕</span><small>Buscar</small></button>
+    <button data-page="messages"><span>✉</span><small>Chat</small></button>
+    <button data-page="profile"><span>◉</span><small>Perfil</small></button>
+  </nav>
+
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar">×</button>
+      <p class="eyebrow">DECK Ⓥ</p><h2 id="modalTitle">Crear publicación</h2>
+      <form id="modalForm"><div id="modalFields"></div><button class="primary-button full" type="submit">Guardar borrador</button></form>
+      <p class="form-hint">Esta versión prepara la interfaz. La publicación real se habilitará al configurar Supabase.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
